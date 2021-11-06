@@ -5,7 +5,7 @@ const Countries = (props) => {
     const {countries, isFetch} = props;
 
     const renderCountries = (countries) => {
-        return countries.map((country, index) => {
+        return countries.map((_, index) => {
             return (
               isFetch && <Card key={`card_${index}`}
                   index={index}
