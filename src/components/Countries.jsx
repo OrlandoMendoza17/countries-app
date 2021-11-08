@@ -3,8 +3,6 @@ import Card from "./Card";
 
 const Countries = ({ countries, isFetch }) => {
 
-  debugger
-  
   if (isFetch) {
     return(
       <>

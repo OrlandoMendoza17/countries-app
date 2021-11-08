@@ -1,57 +1,38 @@
-import React from "react";
+import React, { useRef } from "react";
+// import debounce from 'lodash.debounce';
 
-import debounce from 'lodash.debounce';
+const Buscador = ({ search, filterBySearch, setSearch}) => {
 
-class Buscador extends React.Component {
-
-  state = {
-    busqueda: "",
-    emitChangeDebounced: debounce((value) => {
-      this.props.datosBusqueda(value);
-    }, 10)
-  }
-
-  componentWillUnmount() {
-    this.state.emitChangeDebounced.cancel();
-  }
-
-  handleChange = (event) => {
+  const searchInput = useRef(null)
+  
+  const handleChange = (event) => {
     event.preventDefault();
     const { target } = event;
-    const { datosBusqueda } = this.props;
 
-    this.state.emitChangeDebounced(target.value);
     console.log(target.value);
 
     //Tomamos el valor del input
-    const termino = this.busquedaRef.value;
-
+    const newSearch = searchInput.current.value;
+    
     //Y lo enviamos al componente principal
-    datosBusqueda(termino);
+    setSearch(newSearch)
+    filterBySearch(newSearch);
   }
 
-  setRef = (element) => {
-    this.busquedaRef = element
-  }
 
-  render() {
-    const { setRef } = this
-    const { busqueda } = this.state
-
-    return (
-      <form className="search">
-        <ion-icon name="search-outline"></ion-icon>
-        <input
-          type="text"
-          ref={setRef}
-          value={busqueda}
-          className="search-input"
-          onChange={this.handleChange}
-          placeholder="Search for a country..."
-        />
-      </form>
-    )
-  }
+  return (
+    <form className="search">
+      <ion-icon name="search-outline"></ion-icon>
+      <input
+        type="text"
+        ref={searchInput}
+        value={search}
+        className="search-input"
+        onChange={handleChange}
+        placeholder="Search for a country..."
+      />
+    </form>
+  )
 }
 
 export default Buscador;

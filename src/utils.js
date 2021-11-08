@@ -6,11 +6,10 @@ export const consultarApi = async (setState) => {
   const data = await response.json();
   const countries = Array.from(data);
 
-  debugger
-  
   return {
-    paises: countries,
+    countries: countries,
     filtered: countries,
+    byRegion: countries,
     isFetch: true
   }
   

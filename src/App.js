@@ -7,98 +7,87 @@ import Country from './pages/Country';
 import Details from './Details';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import {consultarApi} from "./utils"
+import { consultarApi } from "./utils"
 
 class App extends React.Component {
   state = {
     regiones: ["Africa", "Americas", "Antartic", "Asia", "Europe", "Oceania"],
-    paises: [],
+    countries: [],
+    byRegion: [],
     filtered: [],
-    busqueda: "",
+    search: "",
     region: "",
     modo: "light",
     darkMode: false,
     isFetch: false,
   }
-  
+
   //El código se ejecuta una única vez.
-  componentDidMount = async () =>{
+  componentDidMount = async () => {
     const API_DATA = await consultarApi()
     this.setState(API_DATA)
-    
+
     console.log("Component did Mount");
     console.log("Se hizo una llamada a la API");
   }
 
-  datosBusqueda = (busqueda) => {
-    this.setState({ busqueda }, () => {
-      //this.getCountryName(this.state.nombres);
-      this.filterCountries(this.state.paises);
+  filterByRegion = (region) => {
+    const { countries } = this.state
+
+    //si no hay region entonces se asigna los countries por defecto
+    const filtered = region? countries.filter(country => 
+      country.region === region  
+    ) : countries;
+    
+    this.setState({filtered, byRegion: filtered})
+  }
+  
+  filterBySearch = (search) => {
+    const { byRegion } = this.state
+
+    const filtered = byRegion.filter(country => {
+      return country.name.common.toLowerCase().includes(search.toLowerCase())
     })
-  }
 
-  datosFiltro = (region) => {
-    this.setState({ region },
-      () => this.filterCountries(this.state.paises));
-  }
-
-  filterCountries = (countries) => {
-    //Convert Objects into a [key, value] array pairs;
-    //Filter our countries Object list
-    
-    const {busqueda, region} = this.state
-    
-    const filtered = countries.filter((country) => {
-      //Check if official name or common name start with our search
-      const matchName = country.name.common.toLowerCase().includes(busqueda)
-      const condition = (matchName && (country.region === region)) || (matchName && region === "");
-      return condition;
-    });
-    
-    //Update State
-    this.setState({ filtered });
-    
-    //Return filtered countries
-    return filtered;
+    this.setState({filtered, search})
   }
 
   toggleDarkMode = () => {
-    const {modo} = this.state
-    const {setState} = this
-    
+    const { modo } = this.state
+    const { setState } = this
+
     setState({
       modo: modo === "light" ? "dark" : "light",
       darkMode: modo === "light" ? true : false
     });
   }
-  
-  
+
+
   render() {
-    const { toggleDarkMode, datosBusqueda, datosFiltro } = this
-    const {modo, filtered, regiones, darkMode } = this.state
-    const {isFetch, nombreActual, paises } = this.state
-    
+    const { toggleDarkMode, filterByRegion, filterBySearch } = this
+    const { modo, filtered, regiones, darkMode } = this.state
+    const { isFetch, countries } = this.state
+
     return (
       <div className={`App ${modo}`}>
         <Header toggleDarkMode={toggleDarkMode} darkModeOn={darkMode} />
         <Router>
           <Switch> {/* The Switch decides which component to show based on the current URL.*/}
-            
+
             <Route exact path='/'>
-              <Country 
+              <Country
                 isFetch={isFetch}
                 filtered={filtered}
                 regiones={regiones}
-                nombreActual={nombreActual}
-                datosFiltro={datosFiltro}
-                datosBusqueda={datosBusqueda}
+                filterBySearch={filterBySearch}
+                filterByRegion={filterByRegion}
               />
             </Route>
-            
+
             <Route exact path='/country/:name'>
-              <Details isFetch={isFetch} countries={paises} />
+              <Details isFetch={isFetch} countries={countries} />
             </Route>
-            
+
           </Switch>
         </Router>
 
