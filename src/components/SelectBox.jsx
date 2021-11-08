@@ -1,33 +1,50 @@
-import React, {useRef} from 'react';
+import React, { useRef } from 'react';
 
 const SelectBox = (props) => {
 
-    const {regions, width} = props;
-    var unique = regions.filter((region, index) => regions.indexOf(region) === index);
-    
-    const regionRef = useRef(null);
+	const { regions, width } = props;
+	var unique = regions.filter((region, index) => regions.indexOf(region) === index);
 
-    const handleChange = (e) => {
-        //Tomamos el valor del input
-        var continente = regionRef.current.value;
-        console.log(continente);
-        //Y lo enviamos al componente principal
-        props.datosFiltro(continente);
-    }
-    const populateSelect = () =>{
-        return unique.map((region, index) => {
-            let notNull = (region !== "" && region !== null);
-            return (
-                notNull && <option key={`continente_${index}`} className="option" value={region}>{region}</option>
-            )
-        });
-    }
-    return (
-        <select onChange={handleChange} ref={regionRef} style={{width:  width + "px"}} className="select-box" name="region" id="region">
-            <option className="option" value="">Filter by Region</option>
-            {populateSelect()}
-        </select>
-    )
+	const regionRef = useRef(null);
+
+	const handleChange = (e) => {
+		//Tomamos el valor del input
+		var continente = regionRef.current.value;
+		console.log(continente);
+		//Y lo enviamos al componente principal
+		props.datosFiltro(continente);
+	}
+	
+	const populateSelect = () => {
+		return unique.map((region, index) => {
+			// let notNull = (region !== "" && region !== null);
+			return (
+				!!region && 
+				<option 
+					value={region}
+					className="option"
+					key={`continente_${index}`}
+				>
+					{region}
+				</option>
+			)
+		});
+	}
+	
+	return (
+		<select 
+			id="region"
+			name="region" 
+			ref={regionRef} 
+			className="select-box" 
+			onChange={handleChange} 
+			style={{ width: width + "px" }} 
+		>
+			
+			<option className="option" value="">Filter by Region</option>
+			{populateSelect()}
+		</select>
+	)
 }
 
 export default SelectBox;
