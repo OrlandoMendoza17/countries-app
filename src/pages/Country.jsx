@@ -19,9 +19,7 @@ const Country = ({datosBusqueda, datosFiltro, regiones, filtered, isFetch, nombr
     
       <Countries 
         countries={filtered}
-        regiones={regiones}
         isFetch={isFetch}
-        nombreActual={nombreActual} 
       />
     </>
   )
