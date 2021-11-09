@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 // import debounce from 'lodash.debounce';
 
-const Buscador = ({ search, filterBySearch, setSearch}) => {
+const Buscador = ({ search, setSearch}) => {
 
   const searchInput = useRef(null)
   
@@ -16,7 +16,6 @@ const Buscador = ({ search, filterBySearch, setSearch}) => {
     
     //Y lo enviamos al componente principal
     setSearch(newSearch)
-    filterBySearch(newSearch);
   }
 
 

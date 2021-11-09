@@ -1,34 +1,69 @@
-import React from 'react';
-import {useState} from "react";
+import React, { useEffect } from 'react';
+import { useState } from "react";
+
+import { filter } from "../utils/filter"
+import { consultarApi } from '../utils';
+import { allRegions } from '../utils/regions';
+
 import Buscador from '../components/Buscador';
 import SelectBox from '../components/SelectBox';
-import Countries from '../components/Countries';
+import CountriesList from '../components/CountriesList';
 
-const Country = ({filterByRegion, filterBySearch, regiones, filtered, isFetch}) => {
+const Country = () => {
   const [search, setSearch] = useState("")
+  const [region, setRegion] = useState("")
+  const [regions] = useState(allRegions)
   
+  const [countries, setCountries] = useState({ all:[], filtered:[], wereFetched: false })
+
+  const filterCountries = (region, search) => {
+
+    const { regionFiltered } = filter.byRegion(region, countries.all)
+    const { filteredCountries } = filter.bySearch(search, regionFiltered)
+
+    setCountries({ ...countries, filtered: filteredCountries })
+  }
+
+  useEffect(async () => {
+    const API_DATA = await consultarApi()
+
+    setCountries({ 
+      ...countries, 
+      all: API_DATA, 
+      filtered: API_DATA,
+      wereFetched: true 
+    })
+    
+  }, [])
+
+  useEffect(() => {
+    filterCountries(region, search)
+  }, [search, region])
+
   return (
     <>
       <div className="container-80">
         <div className="search-filters">
           <Buscador
-            filterBySearch={filterBySearch} 
+            filterCountries={filterCountries}
             search={search}
             setSearch={setSearch}
-            />
-          <SelectBox 
+          />
+          <SelectBox
             width={200}
-            regions={regiones} 
+            regions={regions}
+            region={region}
             search={search}
             setSearch={setSearch}
-            filterByRegion={filterByRegion}
+            setRegion={setRegion}
+            filterCountries={filterCountries}
           />
         </div>
       </div>
-    
-      <Countries 
-        isFetch={isFetch}
-        countries={filtered}
+
+      <CountriesList
+        isFetch={false}
+        countries={countries}
       />
     </>
   )

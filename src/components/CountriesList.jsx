@@ -1,18 +1,17 @@
 import React from "react";
 import Card from "./Card";
 
-const Countries = ({ countries, isFetch }) => {
+const CountriesList = ({ countries }) => {
 
-  if (isFetch) {
+  if (countries.wereFetched) {
     return(
       <>
         {
-          countries.length?
+          countries.filtered.length?
             <div className="container-80">
               <div className="container-grid">
                 {
-                  countries.map((country, index) => (
-                    isFetch && 
+                  countries.filtered.map((country, index) => (
                     <Card key={`card_${index}`} {...country} />
                   ))
                 }
@@ -34,4 +33,4 @@ const Countries = ({ countries, isFetch }) => {
     )
   }
 }
-export default Countries;
+export default CountriesList;

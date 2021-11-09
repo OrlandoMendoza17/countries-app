@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-const SelectBox = ({ regions, width, search, setSearch, filterByRegion}) => {
+const SelectBox = ({ regions, width, search, setSearch, setRegion, filterCountries}) => {
 	const regionRef = useRef(null);
 
 	const handleChange = () => {
@@ -10,7 +10,7 @@ const SelectBox = ({ regions, width, search, setSearch, filterByRegion}) => {
 		console.log(continente);
 		//Y lo enviamos al componente principal
 		setSearch("")
-		filterByRegion(continente);
+		setRegion(continente)
 	}
 
 	return (
