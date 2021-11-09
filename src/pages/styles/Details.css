@@ -1,0 +1,19 @@
+.Details__image{
+  max-height: 350px;
+}
+.Details{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  gap: 48px;
+}
+.Details > .CountryInfo{
+  justify-self: start;
+}
+.Details ul li{
+  font-weight: 600;
+  font-size: 16px;
+  padding: 8px 0px;
+}

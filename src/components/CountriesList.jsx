@@ -1,5 +1,6 @@
 import React from "react";
-import Card from "./Card";
+import CountryCard from "./CountryCard";
+import "./styles/CountriesList.css";
 
 const CountriesList = ({ countries }) => {
 
@@ -8,17 +9,15 @@ const CountriesList = ({ countries }) => {
       <>
         {
           countries.filtered.length?
-            <div className="container-80">
-              <div className="container-grid">
-                {
-                  countries.filtered.map((country, index) => (
-                    <Card key={`card_${index}`} {...country} />
-                  ))
-                }
-              </div>
+            <div className="CountriesList p-3 pb-5">
+              {
+                countries.filtered.map((country, index) => (
+                  <CountryCard key={`card_${index}`} {...country} />
+                ))
+              }
             </div>
           :
-            <div className="container-80">
+            <div className="px-5 p-3 pb-5">
               <h2>No se encontraron coincidencias</h2>
             </div>
         }
@@ -27,7 +26,7 @@ const CountriesList = ({ countries }) => {
     
   } else {
     return (
-      <div className="container-80">
+      <div className="px-5 p-3 pb-5">
         <h2>Cargando Países...</h2>
       </div>
     )

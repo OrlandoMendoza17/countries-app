@@ -5,7 +5,7 @@ const BorderCountry = ({name}) => {
   debugger
   return (
     <Link className="App-link" to={`/alpha/${name}`}>
-      <button key={`${name}_border`} className="light-button">{name}</button>
+      <button key={`${name}_border`} className="btn shadow btn-secondary" >{name}</button>
     </Link>
   )
 }

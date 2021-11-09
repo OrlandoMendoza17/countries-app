@@ -3,14 +3,10 @@ import { Link } from "react-router-dom";
 
 const BackButton = () => {
   return (
-    <div className="container-80">
-      <Link className="App-link" to="/">
-        <button className="light-button back-button">
-          <ion-icon name="arrow-back-outline"></ion-icon>
-          <p>Back</p>
-        </button>
-      </Link>
-    </div>
+    <Link className="light-button back-button" to="/">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+      <span>Back</span>
+    </Link>
   )
 }
 

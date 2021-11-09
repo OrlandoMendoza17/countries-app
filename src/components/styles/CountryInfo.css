@@ -1,0 +1,16 @@
+.CountryInfo{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  grid-template-columns: 1fr;
+}
+.CountryInfo h1{
+  font-weight: bold;
+}
+.CountryInfo__borders ul{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 60px);
+  align-items: center;
+  gap: 10px;
+  /* grid-auto-flow: column; */
+}

@@ -1,3 +1,4 @@
+import "./styles/Details.css";
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation, useHistory } from "react-router-dom";
 import BackButton from '../components/BackButton';
@@ -6,6 +7,7 @@ import { getCountry } from '../utils/api';
 
 
 const Details = () => {
+  const [isFetched, setIsFetched] = useState(false)
   const [country, setCountry] = useState({
     "name": {
       common: "",
@@ -38,36 +40,28 @@ const Details = () => {
     (async()=>{
       const url = pathname.split("/")[1]
       const fetchedCountry = await getCountry(url, name.toLowerCase())
+      setIsFetched(true)
       setCountry(fetchedCountry)
     })()
   }, [name, pathname]);
 
-  // const redirect = (route) => {
-  //   document.title = "Countries App";
-  //   history.push(route);
-  // }
-
-  // if (isFetch) {
   return (
-    <div>
-      <BackButton/>
-      <div className="container-80">
-        <div className="container-double">
-          <div className="image">
-            <img src={country.flags.svg} alt={name + " flag"} />
+    <div className="px-3 px-md-4 px-lg-5 py-4">
+      {
+        isFetched ?
+        <>
+          <BackButton/>
+          <div className="Details container-double pt-4 px-5 px-lg-0">
+            <figure className="shadow-sm">
+              <img className="Details__image img-fluid" src={country.flags.svg} alt={`${name}-flag`} />
+            </figure>
+            <CountryInfo country={country}/>
           </div>
-          <CountryInfo country={country}/>
-        </div>
-      </div>
+        </>
+        :
+        <h3>Cargando datos del país...</h3>
+      }
     </div>
   );
-  // } else {
-  // redirect("/");
-  // return (
-  //   <div className="container-80">
-  //     <h1>Cargando datos del país...</h1>
-  //   </div>
-  // )
-  // }
 };
 export default Details;

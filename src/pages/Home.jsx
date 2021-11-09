@@ -45,7 +45,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="container-80">
+      <div className="px-3 px-md-4 px-lg-5">
         <div className="search-filters">
           <Buscador
             filterCountries={filterCountries}
@@ -62,8 +62,11 @@ const Home = () => {
             filterCountries={filterCountries}
           />
         </div>
+        <h3 className="">
+          Total: <strong>{countries.filtered.length}</strong>
+        </h3>
       </div>
-
+      
       <CountriesList
         isFetch={false}
         countries={countries}
