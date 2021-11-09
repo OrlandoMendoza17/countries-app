@@ -2,16 +2,15 @@ import React from 'react';
 import './App.css';
 
 import Header from './components/Header';
-import Country from './pages/Country';
+import Home from './pages/Home';
 
-import Details from './Details';
+import Details from './pages/Details';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 class App extends React.Component {
   state = {
     modo: "light",
     darkMode: false,
-    isFetch: false,
   }
   
   toggleDarkMode = () => {
@@ -24,11 +23,9 @@ class App extends React.Component {
     });
   }
 
-
   render() {
-    const { toggleDarkMode, filterByRegion, filterBySearch } = this
-    const { modo, filtered, regions, darkMode } = this.state
-    const { isFetch, countries } = this.state
+    const { toggleDarkMode } = this
+    const { modo, darkMode } = this.state
 
     return (
       <div className={`App ${modo}`}>
@@ -36,11 +33,10 @@ class App extends React.Component {
         <Router>
           <Switch> {/* The Switch decides which component to show based on the current URL.*/}
 
-            <Route exact path='/' component={Country} />
+            <Route exact path='/' component={Home} />
 
-            <Route exact path='/country/:name'>
-              <Details isFetch={isFetch} countries={countries} />
-            </Route>
+            <Route exact path='/country/:name' component={Details}/>
+            <Route exact path='/alpha/:name' component={Details}/>
 
           </Switch>
         </Router>

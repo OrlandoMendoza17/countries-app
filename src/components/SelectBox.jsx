@@ -5,7 +5,6 @@ const SelectBox = ({ regions, width, search, setSearch, setRegion, filterCountri
 
 	const handleChange = () => {
 		//Tomamos el valor del input
-		debugger
 		const continente = regionRef.current.value;
 		console.log(continente);
 		//Y lo enviamos al componente principal

@@ -1,9 +1,16 @@
-const API_URL = "https://restcountries.com/v3.1/all/";
+export const getNativeNameCountry = (country) => {
+  return country.name.nativeName[Object.keys(country.name.nativeName)[0]].official
+}
 
-export const consultarApi = async () => {
-  
-  const response = await fetch(API_URL)
-  const countries = await response.json();
-  
-  return countries;
+export const getList = (list) => {
+  return Object.values(list)
+}
+
+export const displayListFrom = (array) => {
+  return array.join(", ")
+}
+
+export const displayList = (list, attribute) => {
+  const listValues = getList(list).map(item => attribute? item[attribute] : item)
+  return displayListFrom(listValues)
 }

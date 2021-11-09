@@ -11,7 +11,6 @@ export const filter = {
     return {regionFiltered}
   },
   bySearch: (search, regionFiltered) => {
-    debugger
     const filteredCountries = regionFiltered.filter(country => {
       return country.name.common.toLowerCase().includes(search.toLowerCase())
     })
