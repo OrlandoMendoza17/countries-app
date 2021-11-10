@@ -1,0 +1,24 @@
+.SelectRegion{
+  /* position: relative; */
+  border-radius: 4px;
+  padding: 0px 10px;
+  font-size: 18px;
+  font-weight: 600;
+  box-shadow: 0px 0px 4px #ccc;
+  color: var(--Very-Dark-Blue);
+}
+.SelectRegion select{
+  height: 48px;
+  min-width: 200px;
+  width: 100%;
+  outline: none;
+  border: none;
+  background-color: transparent;  
+}
+.SelectRegion select .option:last-child(){
+  border: transparent;
+  border-radius: 0px 0px 4px 4px;
+}
+select{
+  color: var(--Very-Dark-Blue);
+}

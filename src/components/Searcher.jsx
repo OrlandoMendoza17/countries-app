@@ -1,7 +1,8 @@
 import React, { useRef } from "react";
+import "./styles/Searcher.css"
 // import debounce from 'lodash.debounce';
 
-const Buscador = ({ search, setSearch}) => {
+const Searcher = ({ search, setSearch}) => {
 
   const searchInput = useRef(null)
   
@@ -34,4 +35,4 @@ const Buscador = ({ search, setSearch}) => {
   )
 }
 
-export default Buscador;
+export default Searcher;

@@ -1,11 +1,16 @@
 .CountryCard{
+  overflow: hidden;
+  max-width: 250px;
+  min-width: 250px;
   transition: 0.5s;
+  border-radius: 10px;
   color: var(--bs-gray-900);
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
 }
 .CountryCard__image{
+  box-shadow: 0px -10px 20px 0px #ccc;
   position: relative;
   min-height: 130px;
   background-color: var(--bs-gray-400);

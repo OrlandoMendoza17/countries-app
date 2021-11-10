@@ -4,8 +4,10 @@ import { useState } from "react";
 import { filter } from "../utils/filter"
 import { allRegions } from '../utils/regions';
 
-import Buscador from '../components/Buscador';
-import SelectBox from '../components/SelectBox';
+import "./styles/Home.css"
+
+import Searcher from '../components/Searcher';
+import SelectRegion from '../components/SelectRegion';
 import CountriesList from '../components/CountriesList';
 import { getCountries } from '../utils/api';
 
@@ -15,6 +17,7 @@ const Home = () => {
   const [regions] = useState(allRegions)
   
   const [countries, setCountries] = useState({ all:[], filtered:[], wereFetched: false })
+  const [isFetched, setIsFetched] = useState(false)
 
   const filterCountries = (region, search) => {
 
@@ -28,7 +31,8 @@ const Home = () => {
     (async()=>{
       
       const API_DATA = await getCountries()
-
+      
+      setIsFetched(true)
       setCountries({ 
         ...countries, 
         all: API_DATA, 
@@ -44,34 +48,27 @@ const Home = () => {
   }, [search, region])
 
   return (
-    <>
-      <div className="px-3 px-md-4 px-lg-5">
-        <div className="search-filters">
-          <Buscador
-            filterCountries={filterCountries}
-            search={search}
-            setSearch={setSearch}
-          />
-          <SelectBox
-            width={200}
-            regions={regions}
-            region={region}
-            search={search}
-            setSearch={setSearch}
-            setRegion={setRegion}
-            filterCountries={filterCountries}
-          />
-        </div>
+    <div className="px-3 px-md-4 px-lg-5">
+      <div className="search-filters py-4">
+        <Searcher
+          filterCountries={filterCountries}
+          search={search}
+          setSearch={setSearch}
+        />
+        <SelectRegion
+          regions={regions}
+          setSearch={setSearch}
+          setRegion={setRegion}
+        />
+      </div>
+      {
+        isFetched && !!countries.filtered.length &&
         <h3 className="">
           Total: <strong>{countries.filtered.length}</strong>
         </h3>
-      </div>
-      
-      <CountriesList
-        isFetch={false}
-        countries={countries}
-      />
-    </>
+      }
+      <CountriesList countries={countries} />
+    </div>
   )
 }
 

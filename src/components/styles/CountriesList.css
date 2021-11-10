@@ -1,7 +1,8 @@
 .CountriesList{
   display: grid;
   /* grid-template-columns: repeat(3, minmax(200px, 250px)); */
-  grid-template-columns: repeat(auto-fill, minmax(200px, 250px));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   justify-content: center;
+  justify-items: center;
   gap: 30px;
 }

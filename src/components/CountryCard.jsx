@@ -7,16 +7,18 @@ const CountryCard = (props) => {
   const { flags, population, region, capital } = props;
 
   return (
-    <Link className="CountryCard card p-2" to={`/country/${name}`}>
+    <Link className="CountryCard card" to={`/country/${name}`}>
       <figure className="CountryCard__image">
         <img src={flags.svg} alt={`${name}_flag`} />
       </figure>
-      <h4 className="CountryCard__title pt-2 px-2">{name}</h4>
-      <ul className="px-2">
-        <li>Population: {population}</li>
-        <li>Region: {region}</li>
-        <li>Capital: {capital}</li>
-      </ul>
+      <section className="p-3 pt-2">
+        <h4 className="CountryCard__title">{name}</h4>
+        <ul className="">
+          <li>Population: {population}</li>
+          <li>Region: {region}</li>
+          <li>Capital: {capital}</li>
+        </ul>
+      </section>
     </Link>
   )
 }

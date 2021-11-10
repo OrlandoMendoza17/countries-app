@@ -5,10 +5,10 @@ import "./styles/CountriesList.css";
 const CountriesList = ({ countries }) => {
 
   if (countries.wereFetched) {
-    return(
+    return (
       <>
         {
-          countries.filtered.length?
+          countries.filtered.length ?
             <div className="CountriesList p-3 pb-5">
               {
                 countries.filtered.map((country, index) => (
@@ -16,19 +16,19 @@ const CountriesList = ({ countries }) => {
                 ))
               }
             </div>
-          :
+            :
             <div className="px-5 p-3 pb-5">
               <h2>No se encontraron coincidencias</h2>
             </div>
         }
       </>
     )
-    
+
   } else {
     return (
-      <div className="px-5 p-3 pb-5">
-        <h2>Cargando Países...</h2>
-      </div>
+      <h4 className="px-5 p-3 pb-5">
+        <strong>Cargando Países...</strong>
+      </h4>
     )
   }
 }
