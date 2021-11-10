@@ -1,10 +1,10 @@
 import React from 'react'
 import BorderCountry from './BorderCountry';
-import { getNativeNameCountry, displayListFrom, displayList, formatNumber } from '../utils';
+import { getCountryNativeName, displayListFrom, displayList, formatNumber } from '../utils';
 import "./styles/CountryInfo.css"
 
 const CountryInfo = ({ country }) => {
-  const name = getNativeNameCountry(country)
+  const name = getCountryNativeName(country)
   document.title = country.name.common;
 
   return (

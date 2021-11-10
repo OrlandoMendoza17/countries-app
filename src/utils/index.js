@@ -1,4 +1,4 @@
-export const getNativeNameCountry = (country) => {
+export const getCountryNativeName = (country) => {
   return country.name.nativeName[Object.keys(country.name.nativeName)[0]].official
 }
 

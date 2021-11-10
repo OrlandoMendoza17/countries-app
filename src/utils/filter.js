@@ -1,5 +1,3 @@
-
-
 export const filter = {
   byRegion: (region, countries) => {
   
