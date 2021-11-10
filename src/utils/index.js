@@ -14,3 +14,5 @@ export const displayList = (list, attribute) => {
   const listValues = getList(list).map(item => attribute? item[attribute] : item)
   return displayListFrom(listValues)
 }
+
+export const formatNumber = (number) => number.toLocaleString('es-VE')

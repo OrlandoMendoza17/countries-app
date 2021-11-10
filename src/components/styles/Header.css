@@ -1,0 +1,39 @@
+.Header{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #1597E5;
+  /* background-color: #00b8c0; */
+  /* color: var(--Very-Dark-Blue); */
+  color: #fff;
+}
+
+@media screen and (min-width: 480px){
+  .Header{
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.Header__logo{
+  font-size: 1.5em;
+}
+
+.Header__dark-mode-button{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-self: start;
+  align-items: center;
+  font-family: 'Nunito Sans', sans-serif;
+  height: 32px;
+  font-weight: 600;
+  background: transparent;
+  font-size: 20px;
+  border: none;
+  cursor:pointer;
+  transition: 0.4s;
+  /* color: var(--Very-Dark-Blue-bg); */
+  color: #fff;
+}
+

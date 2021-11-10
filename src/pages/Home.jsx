@@ -29,14 +29,13 @@ const Home = () => {
 
   useEffect(() => {
     (async()=>{
-      
-      const API_DATA = await getCountries()
+      const data = await getCountries()
       
       setIsFetched(true)
       setCountries({ 
         ...countries, 
-        all: API_DATA, 
-        filtered: API_DATA,
+        all: data, 
+        filtered: data,
         wereFetched: true 
       })
       

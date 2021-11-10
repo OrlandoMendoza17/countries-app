@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { formatNumber } from "../utils";
 import "./styles/CountryCard.css"
 
 const CountryCard = (props) => {
@@ -14,7 +15,7 @@ const CountryCard = (props) => {
       <section className="p-3 pt-2">
         <h4 className="CountryCard__title">{name}</h4>
         <ul className="">
-          <li>Population: {population}</li>
+          <li>Population: {formatNumber(population)}</li>
           <li>Region: {region}</li>
           <li>Capital: {capital}</li>
         </ul>

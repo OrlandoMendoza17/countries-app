@@ -1,13 +1,21 @@
 .CountryCard{
+  border: none;
   overflow: hidden;
+  box-shadow: 0px 4px 20px 0px #ccc;
   max-width: 250px;
   min-width: 250px;
   transition: 0.5s;
   border-radius: 10px;
-  color: var(--bs-gray-900);
+  color: #0F4C75;
+  /* color: #3282B8; */
+  /* background-color: #BBE1FA; */
+  /* color: var(--bs-gray-900); */
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
+}
+.CountryCard:hover{
+  color: #0F4C75;
 }
 .CountryCard__image{
   box-shadow: 0px -10px 20px 0px #ccc;

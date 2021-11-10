@@ -1,6 +1,6 @@
 import React from 'react'
 import BorderCountry from './BorderCountry';
-import { getNativeNameCountry, displayListFrom, displayList } from '../utils';
+import { getNativeNameCountry, displayListFrom, displayList, formatNumber } from '../utils';
 import "./styles/CountryInfo.css"
 
 const CountryInfo = ({ country }) => {
@@ -18,7 +18,7 @@ const CountryInfo = ({ country }) => {
           <strong>Native Name: </strong> {name}
         </li>
         <li>
-          <strong>Population: </strong>{country.population.toLocaleString('es-VE')}
+          <strong>Population: </strong>{formatNumber(country.population)}
         </li>
         <li>
           <strong>Region: </strong>{country.region}

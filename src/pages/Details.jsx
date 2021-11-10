@@ -51,9 +51,9 @@ const Details = () => {
         isFetched ?
         <>
           <BackButton/>
-          <div className="Details container-double pt-4 px-5 px-lg-0">
-            <figure className="shadow-sm">
-              <img className="Details__image img-fluid" src={country.flags.svg} alt={`${name}-flag`} />
+          <div className="Details container-double pt-4 px-2 px-md-5 px-lg-0">
+            <figure className="">
+              <img className="Details__image img-fluid shadow-sm" src={country.flags.svg} alt={`${name}-flag`} />
             </figure>
             <CountryInfo country={country}/>
           </div>
